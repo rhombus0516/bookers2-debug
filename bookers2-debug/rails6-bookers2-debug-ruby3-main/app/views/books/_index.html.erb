@@ -13,6 +13,8 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th></th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,6 +27,22 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
+        <td>
+          <p>
+            <% if book.favorited_by?(current_user) %>
+            <%= link_to book_favorites_path(book), methot: :delete do %>
+            ♡<%= book.favorites.count %>
+            <% end %>
+          </p>
+            <% else %>
+          <p>
+          
+            <%= link_to book_favorites_path(book), methot: :post do %>
+            ♡<%= book.favorites.count %>
+            <% end %>
+          </p>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
