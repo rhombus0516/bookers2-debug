@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-    defore_action :authenticate_user!
+    before_action :authenticate_user!
     
     def search
         
