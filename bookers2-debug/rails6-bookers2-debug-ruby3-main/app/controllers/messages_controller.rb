@@ -3,8 +3,8 @@ class MessagesController < ApplicationController
 
     def message
         @message = Message.new
-        @messages = Message.where(send_user_id: curret_user.id, receive_user_id: params[:id]).or(
-            @receive_messages = Message.where(send_user_id: params[:id], receive_user_id: current_user.id)).order(created_at)
+        @messages = Message.where(send_user_id: current_user.id, receive_user_id: params[:id]).or(
+            @receive_messages = Message.where(send_user_id: params[:id], receive_user_id: current_user.id)).order(:created_at)
     end
 
     def create
@@ -13,12 +13,12 @@ class MessagesController < ApplicationController
         if @message.save!
             @messages = Message.where(send_user_id: current_user.id,
                             receive_user_id: params[:message][:receive_user_id]).or(@receive_messages  = Message.where(
-                            send_user_id: params[:message][:receive_user_id], receive_user_id: current_user.id)).order(created_at)
+                            send_user_id: params[:message][:receive_user_id], receive_user_id: current_user.id)).order(:created_at)
         else
            @message = Message.new
            @messages = Message.where(send_user_id: current_user.id,
                             receive_user_id: params[:message][:receive_user_id]).or(@receive_messages  = Message.where(
-                            send_user_id: params[:message][:receive_user_id], receive_user_id: current_user.id)).order(created_at)
+                            send_user_id: params[:message][:receive_user_id], receive_user_id: current_user.id)).order(:created_at)
         end
 
         render :message
