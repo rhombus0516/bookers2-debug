@@ -21,7 +21,6 @@ class MessagesController < ApplicationController
                             send_user_id: params[:message][:receive_user_id], receive_user_id: current_user.id)).order(:created_at)
         end
 
-        render :message
     end
 
     private
