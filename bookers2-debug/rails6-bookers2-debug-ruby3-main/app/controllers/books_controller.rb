@@ -5,6 +5,9 @@ class BooksController < ApplicationController
     @booknew = Book.new
     @user = @book.user
     @book_comment = BookComment.new
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end 
   end
 
   def index
@@ -16,6 +19,7 @@ class BooksController < ApplicationController
     @books = Book.includes(:favorites).sort_by{ |x|
         x.favorites.where(created_at: from...to).size
       }.reverse
+    
   end
 
   def create
