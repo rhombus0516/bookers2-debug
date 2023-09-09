@@ -10,6 +10,7 @@ module Bookers2
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.web_console.permissions = '180.198.89.94'
 
     # Configuration for the application, engines, and railties goes here.
     #

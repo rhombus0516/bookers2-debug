@@ -43,4 +43,14 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def search
+    user_books = User.find(params[:id]).books
+    created_time = params[:created_at]
+    if created_time == ""
+      @search_book = "日付が選択されていません"
+    else
+      @search_book = user_books.where(created_at :created_time.to_date.all_day).count
+    end
+  end
 end
