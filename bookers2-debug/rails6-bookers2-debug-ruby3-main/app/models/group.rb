@@ -2,8 +2,8 @@ class Group < ApplicationRecord
     has_many :group_users, dependent: :destroy
     belongs_to :owner, class_name: "User"
     
-    validates :name, precense: true
-    validates :introduction, precense: true
+    validates :name, presence: true
+    validates :introduction, presence: true
     has_one_attached :group_image
     
     def get_group_image
