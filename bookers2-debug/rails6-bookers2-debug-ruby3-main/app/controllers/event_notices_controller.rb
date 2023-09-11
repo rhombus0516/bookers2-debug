@@ -26,6 +26,4 @@ class EventNoticesController < ApplicationController
     redirect_to group_path(params[:group_id])
   end
   
-
-
 end
