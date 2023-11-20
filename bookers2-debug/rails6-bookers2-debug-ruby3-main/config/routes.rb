@@ -19,14 +19,15 @@ end
   get 'followings' => 'relationships#followings', as: 'followings'
   get 'followers' => 'relationships#followers', as: 'followers'
   get "daily_posts" => "users#daily_posts"
-  
+
   resources :chats, only: [:show, :create]
   end
-  
+
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
     resource :group_users, only:[:create, :destroy]
     resources :event_notices, only: [:new, :create]
     get "event_notices" => "event_notices#sent"
-  end  
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end  
+end
